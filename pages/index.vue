@@ -229,7 +229,7 @@
                                         <div class="bi-star-fill"></div>
                                     </div>
                                     <!-- Product price-->
-                                    $40.00
+                                    $40.00test
                                 </div>
                             </div>
                             <!-- Product actions-->
