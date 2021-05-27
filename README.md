@@ -1,4 +1,6 @@
 # movie-note
+- Vue.js
+- Nuxt.js
 
 ## Build Setup
 
