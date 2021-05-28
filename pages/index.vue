@@ -1,7 +1,7 @@
 <template>
   <div v-if="init">
         <Navigation />
-        <Header />
+        <Header @searchBoxOfficeMovie="target => { target === 'day' ? getDailyBoxOfficeMoives() : getWeekBoxOfficeMoives() }"/>
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -10,7 +10,7 @@
                     <div v-for="item in movieList" class="col mb-5" v-bind:key="item.movieCd">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <a href="#"><img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." /></a>
+                            <a href="#"><img class="card-img-top" :src="'/image/thumnail/' + item.movieCd + '.jpg'" alt="..." /></a>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -66,6 +66,12 @@ export default Vue.extend({
     methods: {
         async getDailyBoxOfficeMoives() {
             const movieList = await this.$axios.$get(`http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=ecbf42fb330b5ce4a401178c80e43323&targetDt=${this.currentDt}`);
+            this.movieList = movieList.boxOfficeResult.dailyBoxOfficeList;
+            this.init = true;
+        },
+
+        async getWeekBoxOfficeMoives() {
+            const movieList = await this.$axios.$get(`http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key=ecbf42fb330b5ce4a401178c80e43323&targetDt=${this.currentDt}`);
             this.movieList = movieList.boxOfficeResult.dailyBoxOfficeList;
             this.init = true;
         },

@@ -10833,3 +10833,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.movie-background {
+  background-image: url('/image/movie_bg.jpg');
+}
